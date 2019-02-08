@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Cammino_Correiossms>
+			<version>0.0.1</version>
+		</Cammino_Correiossms>
+	</modules>
+</config>
