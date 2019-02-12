@@ -87,20 +87,24 @@ class Cammino_Correiossms_Model_Correios {
         $helper = Mage::helper("correiossms");
         $customer = Mage::getModel('customer/customer')->load($customerId);
 
-        $telephone = $customer->getPrimaryBillingAddress()->getTelephone();
-        $telephone = $helper->cleanPhone($telephone);
-
-        if($helper->isValidCellphone($telephone)) {
-            return $telephone;
-        } else {
-            $fax = $customer->getPrimaryBillingAddress()->getFax();
-            $fax = $helper->cleanPhone($fax);
+        if($customer && $customer->getPrimaryBillingAddress() && $customer->getPrimaryBillingAddress()->getTelephone()) {
+            $telephone = $customer->getPrimaryBillingAddress()->getTelephone();
+            $telephone = $helper->cleanPhone($telephone);
 
             if($helper->isValidCellphone($telephone)) {
-                return $fax;
+                return $telephone;
             } else {
-                return false;
+                $fax = $customer->getPrimaryBillingAddress()->getFax();
+                $fax = $helper->cleanPhone($fax);
+
+                if($helper->isValidCellphone($telephone)) {
+                    return $fax;
+                } else {
+                    return false;
+                }
             }
+        } else {
+            return false;
         }
     }
 
