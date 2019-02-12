@@ -131,7 +131,7 @@ class Cammino_Correiossms_Model_Correios {
                 return true;
             } else if($helper->hasStringInResponse($response, "existe telefone para este objeto');")) {
                 Mage::log("Já existe cadastro para o número " . $cellphone . " nos correios sms para o tracking " . $tracking, null, "correiossms.log");
-                return false;
+                return true;
             } else {
                 Mage::log("Tentou cadastrar para o número " . $cellphone . " nos correios sms para o tracking " . $tracking, null, "correiossms.log");
                 return false;
