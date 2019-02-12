@@ -1,0 +1,42 @@
+<config>
+    <sections>
+        <shipping translate="label">
+            <groups>
+                <correiossms translate="label">
+                    <label>Correios SMS</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Ativar módulo</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enable>
+                        <sync_from>
+                            <label>Sincronizar pedidos a partir de</label>
+                            <comment>Pedidos anteriores a essa data serão ignorados no processo de sincronização</comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>correiossms/adminhtml_system_config_date</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable>
+                                    <value>1</value>
+                                </enable>
+                            </depends>
+                        </sync_from>
+                    </fields>
+                </correiossms>
+            </groups>
+        </shipping>
+    </sections>
+</config>

@@ -5,4 +5,56 @@
 			<version>0.0.1</version>
 		</Cammino_Correiossms>
 	</modules>
+	<global>
+		<blocks>
+			<correiossms>
+				<class>Cammino_Correiossms_Block</class>
+			</correiossms>
+		</blocks>
+		<helpers>
+            <correiossms>
+                <class>Cammino_Correiossms_Helper</class>
+            </correiossms>
+        </helpers>
+		<models>
+			<correiossms>
+				<class>Cammino_Correiossms_Model</class>
+			</correiossms>
+		</models>
+		<resources>
+            <correiossms_setup>
+                <setup>
+                    <module>Cammino_Correiossms</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </correiossms_setup>
+
+            <correiossms_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </correiossms_write>
+
+            <correiossms_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </correiossms_read>
+        </resources>
+	</global>
+
+	<frontend>
+        <routers>
+            <correiossms>
+                <use>standard</use>
+                <args>
+                    <module>Cammino_Correiossms</module>
+                    <frontName>correiossms</frontName>
+                </args>
+            </correiossms>
+        </routers>
+	</frontend>
 </config>
