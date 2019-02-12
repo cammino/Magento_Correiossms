@@ -32,7 +32,7 @@ class Cammino_Correiossms_Model_Correios {
                         if(!empty($tracking) && $cellphone != false) { 
 
                             // Registra o celular do cliente no correio
-                            $status = $this->registerInCorreios($tracking, $cellphone);
+                            $status = $this->registerInCorreios($tracking, $cellphone, $order->getId());
 
                             /* Se conseguiu cadastrar o celular do cliente no correios,
                             atualiza a flag para o pedido no banco, indicando que esse pedido ja foi
@@ -104,7 +104,7 @@ class Cammino_Correiossms_Model_Correios {
         }
     }
 
-    public function registerInCorreios($tracking, $cellphone) {
+    public function registerInCorreios($tracking, $cellphone, $orderId) {
         try {
             $helper = Mage::helper("correiossms");
             $cellphone = Mage::helper("correiossms")->formatCellphoneToCorreios($cellphone);
@@ -127,13 +127,13 @@ class Cammino_Correiossms_Model_Correios {
             curl_close ($ch);
 
             if($helper->hasStringInResponse($response, "alert('Registro gravado com sucesso');")) {
-                Mage::log("Cadastrou com sucesso o número " . $cellphone . " nos correios sms para o tracking " . $tracking, null, "correiossms.log");
+                Mage::log("Cadastrou com sucesso o número " . $cellphone . " nos correios sms para o tracking " . $tracking . " , para o pedido #" . $orderId, null, "correiossms.log");
                 return true;
             } else if($helper->hasStringInResponse($response, "existe telefone para este objeto');")) {
-                Mage::log("Já existe cadastro para o número " . $cellphone . " nos correios sms para o tracking " . $tracking, null, "correiossms.log");
+                Mage::log("Já existe cadastro para o número " . $cellphone . " nos correios sms para o tracking " . $tracking . " , para o pedido #" . $orderId, null, "correiossms.log");
                 return true;
             } else {
-                Mage::log("Tentou cadastrar para o número " . $cellphone . " nos correios sms para o tracking " . $tracking, null, "correiossms.log");
+                Mage::log("Tentou cadastrar para o número " . $cellphone . " nos correios sms para o tracking " . $tracking . " , para o pedido #" . $orderId, null, "correiossms.log");
                 return false;
             }
         } catch (Exception $e) {
