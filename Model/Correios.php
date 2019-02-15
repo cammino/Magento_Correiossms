@@ -1,7 +1,9 @@
 <?php
 class Cammino_Correiossms_Model_Correios {
 
-    public function syncOrdersToCorreios() {
+    public function sync() {
+        Mage::log("==== Iniciou processo para sincronizar pedidos com os correios ====", null, "correiossms.log");
+
         try {
             // Instacia helper
             $helper = Mage::helper("correiossms");

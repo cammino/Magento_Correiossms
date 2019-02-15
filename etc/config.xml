@@ -46,6 +46,17 @@
         </resources>
 	</global>
 
+    <crontab>
+        <jobs>
+            <correiossms_cron_task>
+                <schedule><cron_expr>0 */12 * * *</cron_expr></schedule>
+                <run>
+                    <model>correiossms/correios::sync</model>
+                </run>
+            </correiossms_cron_task>
+        </jobs>
+    </crontab>
+
 	<frontend>
         <routers>
             <correiossms>
